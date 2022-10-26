@@ -13,3 +13,6 @@
 ;;
 ;;
 ;; ( n (if n/3 isInteger) conj(multiples-list)
+(if 
+(mod n 3)
+(mod n 5) 
