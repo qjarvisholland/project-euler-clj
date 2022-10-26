@@ -12,7 +12,10 @@
 ;;
 ;;
 ;;
-;; ( n (if n/3 isInteger) conj(multiples-list)
-(if 
+;; ( n (if n/3 isInteger) conj(multiples-list)<-no lol
+(if (zero? 
 (mod n 3)
 (mod n 5) 
+
+;; switch case is performant !
+     (case 
