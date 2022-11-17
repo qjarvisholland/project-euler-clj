@@ -10,3 +10,9 @@
     [ x [0 1]] 
     (if (< (count x) n) 
       (recur (conj x (+ (last x) (nth x (- (count x) 2))))) x)))
+
+(comment
+ 
+ (apply + (get-fib 30))
+ gives sum of fib's up to index 30, but what index is below 4000000 ??
+ )
