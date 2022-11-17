@@ -5,6 +5,11 @@
         :else (+ (fib (- n 1)) (fib (- n 2)))))
 
 
+(defn fib-add [[a b]] [b (+ a b)])
+(def fib-seq(map last (iterate fib-add [0 1])))
+(take 10 fib-seq)
+
+
 (defn get-fib [n] 
   (loop 
     [ x [0 1]] 
