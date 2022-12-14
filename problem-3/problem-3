@@ -1,29 +1,17 @@
 ;; PROBLEM STATEMENT
-;;
+;; =================
 ;; The prime factors of 13195 are 5, 7, 13 and 29.
-;;
 ;; What is the largest prime factor of the number 600851475143 ?
 
 
-(factors-of 13195)
 
-(factors-of n)
+(defn factors-of [n] (filter #(zero? (rem n %))(range 2 (+ 1 (/ n 2)))))
 
-(check-if-prime (factors-of n))
 
-(for (i = 1; i <= number; (increment i)
+(defn is-prime? [n] (if (< 1 n) (empty? (filter #(= 0 (mod n %)) (range 2 n))) false))
 
-(loop [foo 5]
-(when (< foo 9))
-(recur (+ foo 0.1)))
 
-(def number 60)
-
-(for
-
-(increment [n]
-"simple incrementer for understandings sake"
-    re
-
-(print (string (list i " "))
-
+(comment
+;; user=> (map is-prime? (factors-of 100))
+;; (true false true false false false false)
+)
