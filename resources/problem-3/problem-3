@@ -6,7 +6,7 @@
 
 
 (defn factors-of [n] (filter #(zero? (rem n %))(range 2 (+ 1 (/ n 2)))))
-
+`
 
 (defn is-prime? [n] (if (< 1 n) (empty? (filter #(= 0 (mod n %)) (range 2 n))) false))
 
@@ -14,4 +14,11 @@
 (comment
 ;; user=> (map is-prime? (factors-of 100))
 ;; (true false true false false false false)
+;; (filter is-prime? (factors-of 100))
+;;
+;; how can I calculate these with a LIFO ? last in = highest prime factor, should be first out
+;; memoization
+;; vector collections are last in first out stacks
+;; if coll = []
+;; (peek coll) is more efficient than (last coll)
 )
