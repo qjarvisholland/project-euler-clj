@@ -1,64 +1,48 @@
-
-(defn prime-factors (n)
-	
-	(
-	(let c 2)
-	(while (n > 1 (
-		(if (n % c == 0) (print (string c " "))
-		n /= c))
-	)
-)
+;; PROBLEM STATEMENT
+;; =================
+;; The prime factors of 13195 are 5, 7, 13 and 29.
+;; What is the largest prime factor of the number 600851475143 ?
 
 
-;; prime-factors(n)
 
-;; achieves 0(logn) for composite. else 0(n)
+(defn factors-of [n] (filter #(zero? (rem n %))(range 2 (+ 1 (/ n 2)))))
+`
 
-;; if prime factors are in a collection, use "last" to pick off the largest num
-
-;; (def test-number 600851475143)
-;; (last (prime-factors(test-number)))
-
-;; (loop [x 0]
-;;	(recur (+1 x)))
-;; 
+(defn is-prime? [n] (if (< 1 n) (empty? (filter #(= 0 (mod n %)) (range 2 n))) false))
 
 
 (comment
+;; user=> (map is-prime? (factors-of 100))
+;; (true false true false false false false)
+;; (filter is-prime? (factors-of 100))
+;; (2 2 5 5)
+;; how can I calculate these with a LIFO ? last in = highest prime factor, should be first out
+;; memoization
+;; vector collections are last in first out stacks
+;; if coll = []
+;; (peek coll) is more efficient than (last coll)
 
 
-  (loop [x 0]
-    (print x)
-    (recur (+ 1 x)))
+(require '[clojure.core.memoize :as memo])
 
-  ;; ===
+;; Define a better recursive function to check if a number is prime
+(defn prime? [n]
+  (if (= n 1)
+    false
+    (loop [i 2]
+      (if (> (* i i) n)
+        true
+        (if (zero? (mod n i))
+          false
+          (recur (inc i)))))))
+          
+;; Using memoization here to keep track of already computed factors
+(def prime-factors (memoize (fn [n]
+  (if (prime? n)
+    [n]
+    (let [f (first (filter (fn [x] (and (prime? x) (zero? (mod n x)))) (range 2 n)))]
+      (concat [f] (prime-factors (quot n f))))))))
 
-  ((fn [x]
-     (print x)
-     (recur (+ 1 x))) 0)
+;; solution -
+;; project-euler-clj.core=> (prime-factors 600851475143)
 
-
-  ;; ===
-  ((fn count-forever [x]
-     (print x)
-     (count-forever (+ 1 x))) 0)
-
-
-  ((fn count-some [x max]
-     (if (< x max)
-       (count-some (+ x 1) max)
-       (do
-         (println x)
-         (println "done!")))) 0 1000000)
-
-
-  ((fn count-some [x max]
-     (if (< x max)
-       (do
-         (println
-           (recur (+ x 1) max)))
-       (do
-         (println x)
-         (println "done!")))) 0 10)
-
-)
