@@ -22,3 +22,23 @@
 ;; if coll = []
 ;; (peek coll) is more efficient than (last coll)
 )
+
+(require '[clojure.core.memoize :as memo])
+
+;; Define a better recursive function to check if a number is prime
+(defn prime? [n]
+  (if (= n 1)
+    false
+    (loop [i 2]
+      (if (> (* i i) n)
+        true
+        (if (zero? (mod n i))
+          false
+          (recur (inc i))))))
+          
+;; Using memoization here to keep track of already computed factors
+(def prime-factors (memo/memoize (fn [n]
+  (if (prime? n)
+    [n]
+    (let [f (first (filter (fn [x] (and (prime? x) (zero? (mod n x)))) (range 2 n)))]
+      (concat [f] (prime-factors (quot n f)))))))
