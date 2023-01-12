@@ -1,0 +1,16 @@
+(defn fib 
+    "Define a recursive fibonacci sequence"
+  [n]
+  (condp = n
+    0 1
+    1 1
+    (+ (fib (dec n)) (fib (- n 2)))))
+
+
+(def m-fib 
+   "Fibonacci number with recursion and memoize."
+  (memoize (fn [n]
+             (condp = n
+               0 1
+               1 1
+               (+ (m-fib (dec n)) (m-fib (- n 2)))))))
