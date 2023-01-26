@@ -1,7 +1,7 @@
 ;; PROBLEM STATEMENT
 ;; =================
 ;; The prime factors of 13195 are 5, 7, 13 and 29.
-;; What is the largest prime factor of the number 600851475143 ?
+;; What is the largest prime factor of the number 600,851,475,143 ?
 
 
 
@@ -42,6 +42,12 @@
     [n]
     (let [f (first (filter (fn [x] (and (prime? x) (zero? (mod n x)))) (range 2 n)))]
       (concat [f] (prime-factors (quot n f))))))))
+
+(defn prime-factors-nm [n]
+  (if (prime? n)
+    [n]
+    (let [f (first (filter (fn [x] (and (prime? x) (zero? (mod n x)))) (range 2 n)))]
+      (concat [f] (prime-factors (quot n f))))))
 
 ;; solution -
 ;; project-euler-clj.core=> (prime-factors 600851475143)
