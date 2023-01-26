@@ -21,3 +21,10 @@
 (filter is-palindrome (range 99 1000))
 
 (last (filter is-palindrome (range 99 1000)))
+
+(map vector '(1 2 3 4 5) '(01 02 03 04 05))
+(map vector (range 1 5) (range 1 5))
+
+;; pseudocode
+;; (tuple-products (for each x (for each y (* x y))))
+(map (fn [a b] (* a b)) (range 10) (range 10))
