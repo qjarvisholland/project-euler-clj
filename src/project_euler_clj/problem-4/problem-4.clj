@@ -11,10 +11,11 @@
            (seq (str n1)))
         (str n1)))
 
-(defn is-palindrome [n1]
-      (if
-        (= (reverse (str n1))
-           (seq (str n1)))))
+;; This gives me "too few args to if"
+;;(defn is-palindrome [n1]
+;;      (if
+;;        (= (reverse (str n1))
+;;           (seq (str n1)))))
 
 ;; pseudocode section
 ;;(is-symmetric (= (seq (str n)) (reverse (str n))) true false)
@@ -31,9 +32,13 @@
 ;; pseudocode
 ;; (tuple-products (for each x (for each y (* x y))))
 (map (fn [a b] (* a b)) (range 10) (range 10))
+;;(def digits [1 2 3])
 
-(def digits [1 2 3])
+(defn tuple-products
+[digits]
+	(for [x1 digits
+     	 	x2 digits]
+     		(* x1 x2)))
 
-(for [x1 digits
-      x2 digits]
-     (* x1 x2))
+(last (filter is-palindrome (tuple-products (range 99 1000))))
+;; => 580085
