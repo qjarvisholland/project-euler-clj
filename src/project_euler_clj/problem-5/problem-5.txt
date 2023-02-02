@@ -55,4 +55,19 @@
 	(print @z))
 
 
-	
+(defn solving []
+   (def y (atom 1))
+   (while ( < @y 9 )
+      (do
+         (println @y)
+         (swap! y inc))))
+
+
+
+
+(defn solving []
+   (def z (atom 1))
+   (while (not= (rem @z (range 1 20)))
+      (do
+         (println @z)
+         (swap! z inc))))

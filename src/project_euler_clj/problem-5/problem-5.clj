@@ -33,3 +33,14 @@
 (while (zero? (rem @z (range 1 20)))
        (print @z)
        (swap! z inc))
+
+
+
+
+
+(defn solving []
+   (def z (atom 1))
+   (while (not= (rem @z (range 1 20)))
+      (do
+         (println @z)
+         (swap! z inc))))
