@@ -4,10 +4,11 @@
 ;; What is the smallest positive number that is 
 ;; evenly divisible by all of the numbers from 1 to 20?
 
-(can-be-divided-by (range 1 10) (smallest-number-that))
-= 2520
+;; setting up problem
+;;(can-be-divided-by (range 1 10) (smallest-number-that))
+;; = 2520
 
-(can-be-divided-by (range 1 20) (smallest (n)))
+(can-be-divided-by (range 1 20) (min (n)))
 
 (defn can-be-divided-by
 "literate way of saying rem 0"
@@ -19,11 +20,39 @@
 [n x]
 (if (zero? (mod n x)) n nil))
 
+;;pseudocode
+(for
+[n]
+(if (first (can-be-divided-by (range 1 20) (min (n))) (print n) (inc n))
+
+(defn eligible []
+      (for
+        [n]
+        (if
+          (can-be-divided-by (range 1 20) n))
+        (print n)
+        (inc n)))
+
+(range 1 20) n)
 
 
+(def a (atom 10))
+;; #'user/a
 
-"Banging on an iterator vs ______???wtf_face????____"
+(while (pos? @a)
+       (println @a)
+       (swap! a dec))
 
 
+(def z (atom 1))
+
+(while (< @z 1000)
+	(print @z)
+	(swap! z inc))
+
+(while (not= (rem @z (range 1 20)))
+	(swap! z inc)
+	(print @z))
 
 
+	
