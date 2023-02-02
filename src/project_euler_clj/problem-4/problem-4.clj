@@ -42,3 +42,5 @@
 
 (last (filter is-palindrome (tuple-products (range 99 1000))))
 ;; => 580085
+
+(last (filter is-palindrome (tuple-products (range 1000 99 -1)))) ;; faster
